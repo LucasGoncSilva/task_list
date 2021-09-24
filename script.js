@@ -21,6 +21,15 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#add').onsubmit = () => {
 
         const task = task_input.value
+
+        if (task === '') {
+            task_input.value = ''
+            submit_btn.disabled = true
+            submit_btn.style.cursor = 'not-allowed'
+
+            return false
+        }
+
         const li = document.createElement('li')
 
         li.innerHTML = task
@@ -29,6 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         task_input.value = ''
         submit_btn.disabled = true
+        submit_btn.style.cursor = 'not-allowed'
 
         return false
     }
