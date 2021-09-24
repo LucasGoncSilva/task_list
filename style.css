@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;800&display=swap');
+
+html {
+    font: normal 20px 'Ubuntu';
+}
+
+body {
+    background-color: #4169e1;
+}
+
+h1 {
+    text-align: center;
+}
+
+li {
+    color: #000;
+}
+
+fieldset {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+#submit_input, #clear_all {
+    border-radius: 50px;
+}
+
+#submit_input {
+    background-color: #0f0;
+}
+
+#clear_all {
+    background-color: #f40;
+    cursor: pointer;
+}
+
+#list {
+    margin: auto;
+    max-width: fit-content;
+}
