@@ -1,3 +1,17 @@
+if (!localStorage.getItem('tasks')) {
+    var todos = []
+    var todos_storage = todos.toString()
+    localStorage.setItem('tasks', todos_storage)
+}
+
+console.log(todos_storage)
+
+function save_added_task(task) {
+    todos.append(task)
+    var todos_storage = todos.toString()
+    localStorage.setItem('tasks', todos_storage)
+}
+
 window.addEventListener('DOMContentLoaded', () => {
 
     const submit_btn = document.querySelector('#submit_input')
@@ -46,6 +60,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#clear').onsubmit = () => {
 
         task_list.innerHTML = []
+        todos = []
+        
+        localStorage.setItem('tasks', 
     }
 
 })
