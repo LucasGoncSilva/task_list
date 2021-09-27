@@ -1,7 +1,9 @@
 if (!localStorage.getItem('tasks')) {
+
     var todos = []
     var todos_storage = todos.toString()
     localStorage.setItem('tasks', todos_storage)
+
 }
 
 function save_added_task(task) {
@@ -21,9 +23,6 @@ function load_tasks() {
         if (item == '') { return false }
 
         const item_li = document.createElement('li')
-
-        console.log(item)
-        console.log(item_li)
 
         item_li.innerHTML = item
 

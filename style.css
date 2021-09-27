@@ -5,7 +5,8 @@ html {
 }
 
 body {
-    background-color: #4169e1;
+    background-color: #0af;
+    color: #037;
 }
 
 h1 {
@@ -13,7 +14,7 @@ h1 {
 }
 
 li {
-    color: #000;
+    color: #fff;
 }
 
 fieldset {
@@ -21,6 +22,7 @@ fieldset {
     justify-content: space-evenly;
     max-width: 500px;
     margin: 50px auto;
+    border: solid
 }
 
 #submit_input, #clear_all {
