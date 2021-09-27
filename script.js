@@ -14,13 +14,9 @@ function save_added_task(task) {
 
 function load_tasks() {
 
-    let saved_tasks = localStorage.getItem('tasks')
-    let saved_tasks_list = saved_tasks.split(',')
+    todos = localStorage.getItem('tasks').split(',')
 
-    console.log(saved_tasks)
-    console.log(saved_tasks_list)
-
-    saved_tasks_list.forEach(item => {
+    todos.forEach(item => {
 
         if (item == '') { return false }
 
