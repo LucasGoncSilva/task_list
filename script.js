@@ -31,7 +31,6 @@ function load_tasks() {
         if (item == '') { return false }
 
         const item_li = document.createElement('li')
-
         item_li.innerHTML = item
 
         document.querySelector('#task_list').appendChild(item_li)
@@ -53,6 +52,8 @@ function reset_tasks() {
 
     }
 
+    return false
+
 }
 
 
@@ -63,7 +64,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const submit_btn = document.querySelector('#submit_btn')
     const task_list = document.querySelector('#task_list')
 
-    load_tasks(task_list)
+    load_tasks()
 
     block_form()
 
@@ -96,9 +97,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         const li = document.createElement('li')
-
         li.innerHTML = task
-
         task_list.append(li)
 
         block_form()
@@ -109,10 +108,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    document.querySelector('#clear').onsubmit = () => {
-
-        reset_tasks()
-
-    }
+    document.querySelector('#clear').onsubmit = reset_tasks
 
 })
