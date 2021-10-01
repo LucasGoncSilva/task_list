@@ -14,6 +14,6 @@ Escreva a tarefa no campo de texto e pressione/clique no botao "Inserir" para ad
 
 ## Remover tarefa
 
-Apenas pressione/clique no botao "Limpar Lista".
+Apenas pressione/clique no botao "Limpar Lista" e confirme a decisao na janela que aparecer (caso mude de ideia, cancele quando aparecer essa mesma janela e nada sera alterado).
 
 - ESTE BOTAO APAGARA TODOS OS ITENS DA LISTA
