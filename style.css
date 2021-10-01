@@ -11,6 +11,7 @@ body {
 
 h1 {
     text-align: center;
+    font-weight: 800;
 }
 
 li {
@@ -25,11 +26,11 @@ fieldset {
     border: solid
 }
 
-#submit_input, #clear_all {
+#submit_btn, #clear_all {
     border-radius: 50px;
 }
 
-#submit_input {
+#submit_btn {
     background-color: #0f0;
 }
 

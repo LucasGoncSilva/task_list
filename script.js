@@ -6,7 +6,15 @@ if (!localStorage.getItem('tasks')) {
 
 }
 
-function save_added_task(task) {
+function block_form() {
+
+    document.querySelector('#task_input').value = ''
+    document.querySelector('#submit_btn').disabled = true
+    document.querySelector('#submit_btn').style.cursor = 'not-allowed'
+
+}
+
+function save_tasks(task) {
 
     todos.push(task)
     todos_storage = todos.toString()
@@ -32,12 +40,21 @@ function load_tasks() {
 
 }
 
+function reset_tasks() {
+
+    task_list.innerHTML = []
+    todos = []
+    todos_storage = todos.toString()
+    localStorage.setItem('tasks', todos_storage)
+
+}
+
 
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    const submit_btn = document.querySelector('#submit_input')
     const task_input = document.querySelector('#task_input')
+    const submit_btn = document.querySelector('#submit_btn')
     const task_list = document.querySelector('#task_list')
 
     load_tasks(task_list)
@@ -61,10 +78,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const task = task_input.value
 
-        if (task === '') {
-            task_input.value = ''
-            submit_btn.disabled = true
-            submit_btn.style.cursor = 'not-allowed'
+        if (task == '' || !task.replace(/\s/g, '').length) {
+
+            block_form()
+
+            window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
 
             return false
 
@@ -76,11 +94,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
         task_list.append(li)
 
-        task_input.value = ''
-        submit_btn.disabled = true
-        submit_btn.style.cursor = 'not-allowed'
+        block_form()
 
-        save_added_task(task)
+        save_tasks(task)
 
         return false
 
@@ -88,10 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('#clear').onsubmit = () => {
 
-        task_list.innerHTML = []
-        todos = []
-        todos_storage = todos.toString()
-        localStorage.setItem('tasks', todos_storage)
+        reset_tasks()
 
     }
 
