@@ -44,3 +44,9 @@ fieldset {
     margin: auto;
     max-width: fit-content;
 }
+
+#image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
