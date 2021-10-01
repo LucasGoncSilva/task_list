@@ -42,10 +42,16 @@ function load_tasks() {
 
 function reset_tasks() {
 
-    task_list.innerHTML = []
-    todos = []
-    todos_storage = todos.toString()
-    localStorage.setItem('tasks', todos_storage)
+    let confirm = window.confirm('Tem certeza? Toda a lista será apagada.')
+
+    if (confirm) {
+
+        task_list.innerHTML = []
+        todos = []
+        todos_storage = todos.toString()
+        localStorage.setItem('tasks', todos_storage)
+
+    }
 
 }
 
@@ -59,8 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     load_tasks(task_list)
 
-    submit_btn.disabled = true
-    submit_btn.style.cursor = 'not-allowed'
+    block_form()
 
     task_input.onkeyup = () => {
 
@@ -68,9 +73,11 @@ window.addEventListener('DOMContentLoaded', () => {
         submit_btn.style.cursor = 'pointer'
 
         if (task_input.value.length !== 0) {
+
             submit_btn.disabled = false
             submit_btn.style.cursor = 'pointer'
-        } else { submit_btn.disabled = true; submit_btn.style.cursor = 'not-allowed' }
+
+        } else { block_form() }
 
     }
 
