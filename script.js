@@ -108,6 +108,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    document.querySelector('#clear').onsubmit = reset_tasks
+    document.querySelector('#open_form').onclick = () => {
+
+        const popup = document.querySelector('#popup')
+
+        switch (popup.style.display === 'block') {
+            case false:
+                popup.style.display = 'block'
+                break;
+        
+            case true:
+                popup.style.display = 'none'
+                break;
+        }
+
+    }
+
+    document.querySelector('#clear').onclick = reset_tasks
 
 })

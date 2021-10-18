@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;800&display=swap');
 
+:root {
+    --main_bg_color: #fff;
+    --main_fg_color: #60c;
+}
+
 html {
     font: normal 20px 'Ubuntu';
 }
 
 body {
-    background-color: #0af;
-    color: #037;
+    background-color: var(--main_bg_color);
+    color: var(--main_fg_color);
 }
 
 h1 {
@@ -15,38 +20,55 @@ h1 {
 }
 
 li {
-    color: #fff;
     margin-bottom: 0.5em;
+    transform: translateX(-10px);
 }
 
-fieldset {
+#buttons, #image {
+    margin: 1vw 25vw;
     display: flex;
-    justify-content: space-evenly;
-    max-width: 500px;
-    margin: 50px auto;
-    border: solid
+    justify-content: space-around;
+    align-items: center;
 }
 
-#submit_btn, #clear_all {
-    border-radius: 50px;
+#open_form {
+    background-color: var(--main_fg_color);
+}
+
+#open_form, #clear, #edit {
+    border-radius: 50%;
+    padding: .5em;
+    cursor: pointer;
+    opacity: .7;
+}
+
+#open_form:hover, #clear:hover, #edit:hover { opacity: 1 }
+
+#popup {
+    max-width: 300px;
+    background-color: #aaf;
+    color: var(--main_fg_color);
+    margin: auto;
+    padding-bottom: 30px;
+    border: 5px solid var(--main_fg_color);
+    border-radius: 10px;
+    text-align: center;
+    display: none;
 }
 
 #submit_btn {
+    border-radius: 8px;
     background-color: #0f0;
 }
 
-#clear_all {
-    background-color: #f40;
-    cursor: pointer;
-}
-
 #list {
-    margin: auto;
     max-width: fit-content;
+    margin: 80px auto 50px;
+    padding: 20px;
+    border: 5px solid #037;
+    border-radius: 20px;
 }
 
 #image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    opacity: .05;
 }

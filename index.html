@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="icon.svg">
+    <link rel="icon" href="SVGs/icon.svg">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <title>Lista Pessoal de Tarefas</title>
@@ -15,20 +15,33 @@
 
     <h1>Lista Pessoal de Tarefas</h1>
 
-    <fieldset>
+    <div id="buttons">
+        <button id="edit">
+            <img src="SVGs/edit.svg" alt="edit">
+        </button>
 
-        <legend>Adicionar e remover</legend>
+        <button id="open_form">
+            <img src="SVGs/add_new.svg" alt="add">
+        </button>
+
+        <button id="clear">
+            <img src="SVGs/trash_can.svg" alt="trash_can">
+        </button>
+    </div>
+
+    <div id="popup">
 
         <form id="add">
-            <input type="text" id="task_input" autocomplete="off">
+
+            <h3>Adicionar nova tarefa</h3>
+
+            <input type="text" id="task_input" autocomplete="off" placeholder="Tarefa aqui">
+
             <input type="submit" id='submit_btn' value="Inserir">
+
         </form>
 
-        <form id="clear">
-            <input type="submit" id='clear_all' value="Limpar Lista">
-        </form>
-
-    </fieldset>
+    </div>
 
     <div id="list">
         <ul id="task_list">
@@ -36,7 +49,7 @@
     </div>
 
     <div id="image">
-        <img src="icon.svg" alt="icon" id="illustration">
+        <img src="SVGs/icon.svg" alt="icon" id="illustration">
     </div>
 
 </body>
