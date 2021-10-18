@@ -25,9 +25,9 @@ li {
 }
 
 #buttons, #image {
-    margin: 1vw 25vw;
+    margin: 1vh auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 
