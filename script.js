@@ -7,19 +7,26 @@ if (!localStorage.getItem('tasks')) {
 }
 
 
-if (!localStorage.getItem('tag_num')) {
+if (!localStorage.getItem('tag_num') || !localStorage.getItem('tag_num_storage')) {
 
     localStorage.setItem('tag_num', 0)
+
+    var tag_list = []
+    var tag_list_storage = tag_list.toString()
+    localStorage.setItem('tag', tag_list_storage)
 
 }
 
 
 function update_tag(num) {
 
-    localStorage.setItem('tag_num', num)
+    let save = num++
+
+    localStorage.setItem('tag_num', save)
     tag = Number(localStorage.getItem('tag_num'))
 
     console.log(tag)
+    console.log(num)
 
 }
 
@@ -31,28 +38,48 @@ function block_form() {
 
 }
 
-function save_tasks(task) {
+function save_tasks(task, data) {
 
     todos.push(task)
     todos_storage = todos.toString()
     localStorage.setItem('tasks', todos_storage)
+
+    tag_list.push(data)
+    tag_list_storage = tag_list.toString()
+    localStorage.setItem('tag', tag_list_storage)
+
+    update_tag(data)
+
+    console.log(data)
 
 }
 
 function load_tasks() {
 
     todos = localStorage.getItem('tasks').split(',')
+    todos_forin = todos.values()
 
-    todos.forEach(item => {
+    tag = todos.length
 
-        if (item == '') { return false }
+    console.log(todos.length)
 
-        const item_li = document.createElement('li')
-        item_li.innerHTML = item
+    for (const item of todos_forin && todos) {
 
-        document.querySelector('#task_list').appendChild(item_li)
+        switch (item) {
+            case '':
+                break;
 
-    })
+            default:
+                const item_li = document.createElement('li')
+
+                item_li.innerHTML = item
+                item_li.setAttribute('data-tag', todos.indexOf(item))
+
+                document.querySelector('#task_list').appendChild(item_li)
+                break;
+        }
+
+    }
 
 }
 
@@ -65,12 +92,13 @@ function reset_tasks() {
         task_list.innerHTML = []
         todos = []
         todos_storage = todos.toString()
-
         localStorage.setItem('tasks', todos_storage)
 
-        // update_tag(0)
+        tag_list = []
+        tag_list_storage = tag_list.toString()
+        localStorage.setItem('tag', tag_list_storage)
 
-        // console.log('updated')
+        window.location.reload()
 
     }
 
@@ -82,8 +110,7 @@ function reset_tasks() {
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    var tag = Number(localStorage.getItem('tag_num'))
-    tag++
+    // var tag = todos.length
 
     const add_task_input = document.querySelector('#add_task_input')
     const add_task_button = document.querySelector('#add_task_button')
@@ -128,9 +155,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         block_form()
 
-        save_tasks(task)
-
-        update_tag(tag++)
+        save_tasks(task, tag++)
 
         console.log(li)
 
