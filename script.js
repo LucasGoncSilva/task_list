@@ -12,21 +12,14 @@ if (!localStorage.getItem('tag_num') || !localStorage.getItem('tag_num_storage')
     localStorage.setItem('tag_num', 0)
 
     var tag_list = []
-    var tag_list_storage = tag_list.toString()
-    localStorage.setItem('tag', tag_list_storage)
 
 }
 
 
 function update_tag(num) {
 
-    let save = num++
-
-    localStorage.setItem('tag_num', save)
+    localStorage.setItem('tag_num', num)
     tag = Number(localStorage.getItem('tag_num'))
-
-    console.log(tag)
-    console.log(num)
 
 }
 
@@ -40,30 +33,24 @@ function block_form() {
 
 function save_tasks(task, data) {
 
+    data++
+
     todos.push(task)
     todos_storage = todos.toString()
     localStorage.setItem('tasks', todos_storage)
 
-    tag_list.push(data)
-    tag_list_storage = tag_list.toString()
-    localStorage.setItem('tag', tag_list_storage)
-
     update_tag(data)
-
-    console.log(data)
 
 }
 
 function load_tasks() {
 
     todos = localStorage.getItem('tasks').split(',')
-    todos_forin = todos.values()
+    todos_forof = todos.values()
 
     tag = todos.length
 
-    console.log(todos.length)
-
-    for (const item of todos_forin && todos) {
+    for (const item of todos_forof && todos) {
 
         switch (item) {
             case '':
@@ -95,8 +82,6 @@ function reset_tasks() {
         localStorage.setItem('tasks', todos_storage)
 
         tag_list = []
-        tag_list_storage = tag_list.toString()
-        localStorage.setItem('tag', tag_list_storage)
 
         window.location.reload()
 
@@ -109,8 +94,6 @@ function reset_tasks() {
 
 
 window.addEventListener('DOMContentLoaded', () => {
-
-    // var tag = todos.length
 
     const add_task_input = document.querySelector('#add_task_input')
     const add_task_button = document.querySelector('#add_task_button')
@@ -156,8 +139,6 @@ window.addEventListener('DOMContentLoaded', () => {
         block_form()
 
         save_tasks(task, tag++)
-
-        console.log(li)
 
         return false
 
