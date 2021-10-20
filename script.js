@@ -8,9 +8,9 @@ if (!localStorage.getItem('tasks')) {
 
 function block_form() {
 
-    document.querySelector('#task_input').value = ''
-    document.querySelector('#submit_btn').disabled = true
-    document.querySelector('#submit_btn').style.cursor = 'not-allowed'
+    document.querySelector('#add_task_input').value = ''
+    document.querySelector('#add_task_button').disabled = true
+    document.querySelector('#add_task_button').style.cursor = 'not-allowed'
 
 }
 
@@ -60,31 +60,31 @@ function reset_tasks() {
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    const task_input = document.querySelector('#task_input')
-    const submit_btn = document.querySelector('#submit_btn')
+    const add_task_input = document.querySelector('#add_task_input')
+    const add_task_button = document.querySelector('#add_task_button')
     const task_list = document.querySelector('#task_list')
 
     load_tasks()
 
     block_form()
 
-    task_input.onkeyup = () => {
+    add_task_input.onkeyup = () => {
 
-        submit_btn.disabled = false
-        submit_btn.style.cursor = 'pointer'
+        add_task_button.disabled = false
+        add_task_button.style.cursor = 'pointer'
 
-        if (task_input.value.length !== 0) {
+        if (add_task_input.value.length !== 0) {
 
-            submit_btn.disabled = false
-            submit_btn.style.cursor = 'pointer'
+            add_task_button.disabled = false
+            add_task_button.style.cursor = 'pointer'
 
         } else { block_form() }
 
     }
 
-    document.querySelector('#add').onsubmit = () => {
+    document.querySelector('#add_task').onsubmit = () => {
 
-        const task = task_input.value
+        const task = add_task_input.value
 
         if (task == '' || !task.replace(/\s/g, '').length) {
 
@@ -108,9 +108,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    document.querySelector('#open_form').onclick = () => {
+    document.querySelector('#toggle_add_form').onclick = () => {
 
-        const popup = document.querySelector('#popup')
+        const popup = document.querySelector('#add_task_popup')
 
         switch (popup.style.display === 'block') {
             case false:

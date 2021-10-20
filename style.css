@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600;800&display=swap');
 
 :root {
     --main_bg_color: #fff;
     --main_fg_color: #60c;
 }
 
-html {
-    font: normal 20px 'Ubuntu';
-}
+html { font: normal 20px 'Ubuntu'; }
 
 body {
     background-color: var(--main_bg_color);
@@ -24,6 +22,14 @@ li {
     transform: translateX(-10px);
 }
 
+input[type='submit'] {
+    font-weight: 600;
+    padding: .5em 1em;
+    border-radius: 8px;
+}
+
+input[type='submit']:disabled { opacity: .5;}
+
 #buttons, #image {
     margin: 1vh auto;
     display: flex;
@@ -31,23 +37,23 @@ li {
     align-items: center;
 }
 
-#open_form {
+#toggle_add_form {
     background-color: var(--main_fg_color);
 }
 
-#open_form, #clear, #edit {
+#toggle_add_form, #clear, #toggle_edit_form {
     border-radius: 50%;
     padding: .5em;
     cursor: pointer;
     opacity: .7;
 }
 
-#open_form:hover, #clear:hover, #edit:hover { opacity: 1 }
+#toggle_add_form:hover, #clear:hover, #toggle_edit_form:hover { opacity: 1 }
 
-#popup {
+#add_task_popup {
     max-width: 300px;
-    background-color: #aaf;
-    color: var(--main_fg_color);
+    background-color: var(--main_fg_color);
+    color: var(--main_bg_color);
     margin: auto;
     padding-bottom: 30px;
     border: 5px solid var(--main_fg_color);
@@ -56,9 +62,9 @@ li {
     display: none;
 }
 
-#submit_btn {
-    border-radius: 8px;
-    background-color: #0f0;
+#add_task_button {
+    color: var(--main_fg_color);
+    background-color: var(--main_bg_color);
 }
 
 #list {
