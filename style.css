@@ -22,6 +22,8 @@ li {
     transform: translateX(-10px);
 }
 
+input[type='radio'] { margin: 1.5em .5em;}
+
 input[type='submit'] {
     font-weight: 600;
     padding: .5em 1em;
@@ -50,16 +52,32 @@ input[type='submit']:disabled { opacity: .5;}
 
 #toggle_add_form:hover, #clear:hover, #toggle_edit_form:hover { opacity: 1 }
 
-#add_task_popup {
+#edit_task_popup, #add_task_popup {
     max-width: 300px;
-    background-color: var(--main_fg_color);
-    color: var(--main_bg_color);
-    margin: auto;
+    margin: 1em auto;
     padding-bottom: 30px;
-    border: 5px solid var(--main_fg_color);
     border-radius: 10px;
     text-align: center;
+    border: 5px solid
+}
+
+#edit_task_popup {
+    background-color: var(--main_bg_color);
+    color: var(--main_fg_color);
+    border-color: var(--main_fg_color);
+    /* display: none; */
+}
+
+#add_task_popup {
+    background-color: var(--main_fg_color);
+    color: var(--main_bg_color);
+    border-color: var(--main_fg_color);
     display: none;
+}
+
+#edit_task_button {
+    color: var(--main_bg_color);
+    background-color: var(--main_fg_color);
 }
 
 #add_task_button {
