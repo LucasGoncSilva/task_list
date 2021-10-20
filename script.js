@@ -6,6 +6,23 @@ if (!localStorage.getItem('tasks')) {
 
 }
 
+
+if (!localStorage.getItem('tag_num')) {
+
+    localStorage.setItem('tag_num', 0)
+
+}
+
+
+function update_tag(num) {
+
+    localStorage.setItem('tag_num', num)
+    tag = Number(localStorage.getItem('tag_num'))
+
+    console.log(tag)
+
+}
+
 function block_form() {
 
     document.querySelector('#add_task_input').value = ''
@@ -48,7 +65,12 @@ function reset_tasks() {
         task_list.innerHTML = []
         todos = []
         todos_storage = todos.toString()
+
         localStorage.setItem('tasks', todos_storage)
+
+        // update_tag(0)
+
+        // console.log('updated')
 
     }
 
@@ -59,6 +81,9 @@ function reset_tasks() {
 
 
 window.addEventListener('DOMContentLoaded', () => {
+
+    var tag = Number(localStorage.getItem('tag_num'))
+    tag++
 
     const add_task_input = document.querySelector('#add_task_input')
     const add_task_button = document.querySelector('#add_task_button')
@@ -98,11 +123,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const li = document.createElement('li')
         li.innerHTML = task
+        li.setAttribute('data-tag', tag)
         task_list.append(li)
 
         block_form()
 
         save_tasks(task)
+
+        update_tag(tag++)
+
+        console.log(li)
 
         return false
 
@@ -116,7 +146,7 @@ window.addEventListener('DOMContentLoaded', () => {
             case false:
                 popup.style.display = 'block'
                 break;
-        
+
             case true:
                 popup.style.display = 'none'
                 break;
