@@ -16,11 +16,11 @@
     <h1>Lista Pessoal de Tarefas</h1>
 
     <div id="buttons">
-        <button id="toggle_edit_form">
+        <button id="toggle_edit_form" class="toggle_form" data-form="edit">
             <img src="SVGs/edit.svg" alt="edit">
         </button>
 
-        <button id="toggle_add_form">
+        <button id="toggle_add_form" class="toggle_form" data-form="add">
             <img src="SVGs/add_new.svg" alt="add">
         </button>
 
@@ -55,7 +55,7 @@
 
             <h3>Adicionar nova tarefa</h3>
 
-            <input type="text" id="add_task_input" autocomplete="off" placeholder="Tarefa aqui">
+            <input type="text" id="add_task_input" autocomplete="off" placeholder="Escreva aqui">
 
             <input type="submit" id='add_task_button' value="Inserir">
 

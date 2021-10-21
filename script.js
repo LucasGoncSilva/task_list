@@ -1,3 +1,5 @@
+var editting = false
+
 if (!localStorage.getItem('tasks')) {
 
     var todos = []
@@ -20,6 +22,40 @@ function update_tag(num) {
 
     localStorage.setItem('tag_num', num)
     tag = Number(localStorage.getItem('tag_num'))
+
+}
+
+function check_editting(form, todos) {
+
+    if (editting === false) { toggle_form(form); return false }
+
+    if (todos.length <= 1) {
+
+        window.alert('Nenhuma tarefa a ser editada')
+        editting = false
+        return false
+
+    }
+
+    toggle_form(form)
+
+    console.log('true')
+
+}
+
+function toggle_form(form) {
+
+    const popup = document.querySelector(`#${form}_task_popup`)
+
+    switch (popup.style.display === 'block') {
+        case false:
+            popup.style.display = 'block'
+            break;
+
+        case true:
+            popup.style.display = 'none'
+            break;
+    }
 
 }
 
@@ -144,21 +180,26 @@ window.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    document.querySelector('#toggle_add_form').onclick = () => {
+    document.querySelectorAll('.toggle_form').forEach((button) => {
 
-        const popup = document.querySelector('#add_task_popup')
+        button.onclick = () => {
 
-        switch (popup.style.display === 'block') {
-            case false:
-                popup.style.display = 'block'
-                break;
+            const form = button.dataset.form
 
-            case true:
-                popup.style.display = 'none'
-                break;
+            switch (form) {
+                case 'edit':
+                    editting = !editting
+                    check_editting(form, todos)
+                    break;
+
+                default:
+                    toggle_form(form)
+                    break;
+            }
+
         }
 
-    }
+    })
 
     document.querySelector('#clear').onclick = reset_tasks
 

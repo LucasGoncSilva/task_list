@@ -58,21 +58,20 @@ input[type='submit']:disabled { opacity: .5;}
     padding-bottom: 30px;
     border-radius: 10px;
     text-align: center;
-    border: 5px solid
+    border: 5px solid;
+    display: none;
 }
 
 #edit_task_popup {
     background-color: var(--main_bg_color);
     color: var(--main_fg_color);
     border-color: var(--main_fg_color);
-    /* display: none; */
 }
 
 #add_task_popup {
     background-color: var(--main_fg_color);
     color: var(--main_bg_color);
     border-color: var(--main_fg_color);
-    display: none;
 }
 
 #edit_task_button {
