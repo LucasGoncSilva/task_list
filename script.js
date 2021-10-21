@@ -39,7 +39,20 @@ function check_editting(form, todos) {
 
     toggle_form(form)
 
-    console.log('true')
+    document.querySelectorAll('li').forEach((li) => {
+
+        li.onclick = () => {
+
+            const tag = li.dataset.tag
+            let text = li.innerText
+
+            document.querySelector('#edit_task_input').value = text
+
+            console.log(tag, text)
+
+        }
+
+    })
 
 }
 
@@ -150,6 +163,32 @@ window.addEventListener('DOMContentLoaded', () => {
             add_task_button.style.cursor = 'pointer'
 
         } else { block_form() }
+
+    }
+
+    document.querySelector('#edit_task').onsubmit = () => {
+
+        const task = add_task_input.value
+
+        if (task == '' || !task.replace(/\s/g, '').length) {
+
+            block_form()
+
+            window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
+
+            return false
+
+        }
+
+        document.querySelectorAll('input[name="choice"]').forEach((elem)=>{
+
+            if (elem.checked) {
+                console.log(elem)
+            }
+
+        })
+
+        return false
 
     }
 
