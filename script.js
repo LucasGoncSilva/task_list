@@ -27,7 +27,15 @@ function update_tag(num) {
 
 function check_editting(form, todos) {
 
-    if (editting === false) { toggle_form(form); return false }
+    if (editting === false) {
+        toggle_form(form)
+
+        document.querySelectorAll('li').forEach((li) => {
+            li.onmouseover = () => { li.style.cursor = 'unset' }
+        })
+
+        return false
+    }
 
     if (todos.length <= 1) {
 
@@ -40,18 +48,7 @@ function check_editting(form, todos) {
     toggle_form(form)
 
     document.querySelectorAll('li').forEach((li) => {
-
-        li.onclick = () => {
-
-            const tag = li.dataset.tag
-            let text = li.innerText
-
-            document.querySelector('#edit_task_input').value = text
-
-            console.log(tag, text)
-
-        }
-
+        li.onmouseover = () => { li.style.cursor = 'pointer' }
     })
 
 }
@@ -72,11 +69,11 @@ function toggle_form(form) {
 
 }
 
-function block_form() {
+function block_form(form) {
 
-    document.querySelector('#add_task_input').value = ''
-    document.querySelector('#add_task_button').disabled = true
-    document.querySelector('#add_task_button').style.cursor = 'not-allowed'
+    document.querySelector(`#${form}_task_input`).value = ''
+    document.querySelector(`#${form}_task_button`).disabled = true
+    document.querySelector(`#${form}_task_button`).style.cursor = 'not-allowed'
 
 }
 
@@ -146,11 +143,28 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const add_task_input = document.querySelector('#add_task_input')
     const add_task_button = document.querySelector('#add_task_button')
+    const edit_task_input = document.querySelector('#edit_task_input')
+    const edit_task_button = document.querySelector('#edit_task_button')
     const task_list = document.querySelector('#task_list')
 
     load_tasks()
 
-    block_form()
+    block_form('edit')
+    block_form('add')
+
+    edit_task_input.onkeyup = () => {
+
+        edit_task_button.disabled = false
+        edit_task_button.style.cursor = 'pointer'
+
+        if (edit_task_input.value.length !== 0) {
+
+            edit_task_button.disabled = false
+            edit_task_button.style.cursor = 'pointer'
+
+        } else { block_form('edit') }
+
+    }
 
     add_task_input.onkeyup = () => {
 
@@ -162,9 +176,48 @@ window.addEventListener('DOMContentLoaded', () => {
             add_task_button.disabled = false
             add_task_button.style.cursor = 'pointer'
 
-        } else { block_form() }
+        } else { block_form('add') }
 
     }
+
+    document.querySelectorAll('form').forEach((form) => {
+
+        form.onsubmit = () => {
+
+            switch (form.id) {
+                case 'add_task':
+
+                    const task = add_task_input.value
+
+                    if (task == '' || !task.replace(/\s/g, '').length) {
+
+                        block_form('add')
+
+                        window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
+
+                        return false
+
+                    }
+
+                    const li = document.createElement('li')
+                    li.innerHTML = task
+                    li.setAttribute('data-tag', tag)
+                    task_list.append(li)
+
+                    block_form('add')
+
+                    save_tasks(task, tag++)
+
+                    return false
+
+                default:
+                    console.log('aoba')
+                    break;
+            }
+
+        }
+
+    })
 
     document.querySelector('#edit_task').onsubmit = () => {
 
@@ -180,40 +233,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
         }
 
-        document.querySelectorAll('input[name="choice"]').forEach((elem)=>{
+        document.querySelectorAll('input[name="choice"]').forEach((elem) => {
 
             if (elem.checked) {
                 console.log(elem)
             }
 
         })
-
-        return false
-
-    }
-
-    document.querySelector('#add_task').onsubmit = () => {
-
-        const task = add_task_input.value
-
-        if (task == '' || !task.replace(/\s/g, '').length) {
-
-            block_form()
-
-            window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
-
-            return false
-
-        }
-
-        const li = document.createElement('li')
-        li.innerHTML = task
-        li.setAttribute('data-tag', tag)
-        task_list.append(li)
-
-        block_form()
-
-        save_tasks(task, tag++)
 
         return false
 
@@ -227,8 +253,35 @@ window.addEventListener('DOMContentLoaded', () => {
 
             switch (form) {
                 case 'edit':
+
                     editting = !editting
                     check_editting(form, todos)
+
+                    document.querySelectorAll('li').forEach((li) => {
+
+                        li.onclick = () => {
+
+                            const tag = li.dataset.tag
+                            let text = li.innerText
+
+                            document.querySelector('#edit_task_input').value = text
+
+                            console.log(tag, text)
+
+                            edit_task_button.disabled = false
+                            edit_task_button.style.cursor = 'pointer'
+
+                            if (edit_task_input.value.length !== 0) {
+
+                                edit_task_button.disabled = false
+                                edit_task_button.style.cursor = 'pointer'
+
+                            } else { block_form('edit') }
+
+                        }
+
+                    })
+
                     break;
 
                 default:
