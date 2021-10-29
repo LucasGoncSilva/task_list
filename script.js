@@ -1,3 +1,5 @@
+// minify using toptal.com
+
 var editting = false
 
 if (!localStorage.getItem('tasks')) {
@@ -282,6 +284,10 @@ window.addEventListener('DOMContentLoaded', () => {
                                             case 'del':
                                                 document.querySelector(`#${li_id}`).remove()
 
+                                                edit_task_input.value = ''
+
+                                                block_form('edit')
+
                                                 todos.pop(text)
                                                 todos_storage = todos.toString()
                                                 localStorage.setItem('tasks', todos_storage)
@@ -290,6 +296,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                                             case 'edit':
                                                 document.querySelector(`#${li_id}`).innerText = task
+
                                                 todos[todos.indexOf(text)] = task
                                                 todos_storage = todos.toString()
                                                 localStorage.setItem('tasks', todos_storage)
