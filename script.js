@@ -218,7 +218,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     return false
 
                 default:
-                    console.log('aoba')
                     break;
             }
 
@@ -246,8 +245,6 @@ window.addEventListener('DOMContentLoaded', () => {
                             let text = li.innerText
 
                             edit_task_input.value = text
-
-                            console.log(li_id, text)
 
                             edit_task_button.disabled = false
                             edit_task_button.style.cursor = 'pointer'
