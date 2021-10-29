@@ -17,36 +17,30 @@
     <h2>Lista pessoal de tarefas</h2>
 
     <div id="buttons">
-        <button id="toggle_edit_form" class="toggle_form" data-form="edit">
-            <img src="SVGs/edit.svg" alt="edit">
-        </button>
 
-        <button id="toggle_add_form" class="toggle_form" data-form="add">
-            <img src="SVGs/add_new.svg" alt="add">
-        </button>
+        <div>
+            <button id="toggle_edit_form" class="toggle_form" data-form="edit">
+                <img src="SVGs/edit.svg" alt="edit">
+            </button><br>
 
-        <button id="clear">
-            <img src="SVGs/trash_can.svg" alt="trash_can">
-        </button>
-    </div>
+            <span>edit</br>&del</span>
+        </div>
 
-    <div id="edit_task_popup">
+        <div>
+            <button id="toggle_add_form" class="toggle_form" data-form="add">
+                <img src="SVGs/add_new.svg" alt="add">
+            </button><br>
 
-        <form id="edit_task">
+            <span>add</br>item</span>
+        </div>
 
-            <h3>Editar tarefa</h3>
+        <div>
+            <button id="clear">
+                <img src="SVGs/trash_can.svg" alt="trash_can">
+            </button><br>
 
-            <input type="text" class="task_input" id="edit_task_input" autocomplete="off" placeholder="Selecione uma tarefa"><br>
-
-            <input type="radio" name="choice" id="edit">
-            <label for="edit">editar</label>
-
-            <input type="radio" name="choice" id="del">
-            <label for="del">deletar</label><br>
-
-            <input type="submit" id='edit_task_button' value="Confirmar">
-
-        </form>
+            <span>reset</br>list</span>
+        </div>
 
     </div>
 
@@ -59,6 +53,27 @@
             <input type="text" class="task_input" id="add_task_input" autocomplete="off" placeholder="Escreva aqui">
 
             <input type="submit" id='add_task_button' value="Inserir">
+
+        </form>
+
+    </div>
+
+    <div id="edit_task_popup">
+
+        <form id="edit_task">
+
+            <h3>Editar tarefa</h3>
+
+            <input type="text" class="task_input" id="edit_task_input" autocomplete="off"
+                placeholder="Selecione uma tarefa"><br>
+
+            <input type="radio" name="choice" id="edit">
+            <label for="edit">editar</label>
+
+            <input type="radio" name="choice" id="del">
+            <label for="del">deletar</label><br>
+
+            <input type="submit" id='edit_task_button' value="Confirmar">
 
         </form>
 

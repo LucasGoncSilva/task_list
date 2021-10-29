@@ -6,6 +6,7 @@
 :root {
     --main_bg_color: #fff;
     --main_fg_color: #60c;
+    --accent_color: #00bfff;
 }
 
 html { font: normal 20px 'Ubuntu'; }
@@ -23,7 +24,7 @@ h1 {
 h2 {
     font-family: 'Dancing Script';
     text-align: center;
-    color: deepskyblue;
+    color: var(--accent_color);
     transform: translateY(-1.7em) rotate(-5deg);
 }
 
@@ -49,9 +50,9 @@ input[type='submit']:disabled { opacity: .5;}
     align-items: center;
 }
 
-#toggle_add_form {
-    background-color: var(--main_fg_color);
-}
+#buttons > div { text-align: center; }
+
+#toggle_add_form { background-color: var(--main_fg_color); }
 
 #toggle_add_form, #clear, #toggle_edit_form {
     border-radius: 50%;
@@ -98,7 +99,7 @@ input[type='submit']:disabled { opacity: .5;}
     max-width: fit-content;
     margin: 80px auto 50px;
     padding: 20px;
-    border: 5px solid #037;
+    border: 5px solid var(--accent_color);
     border-radius: 20px;
 }
 
