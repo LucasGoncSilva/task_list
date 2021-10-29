@@ -71,6 +71,11 @@ function toggle_form(form) {
 
 function block_form(form) {
 
+    if (form === 'edit') {
+        document.querySelector(`#${form}_task_input`).disabled = true
+        document.querySelector(`#${form}_task_input`).style.cursor = 'not-allowed'
+    }
+
     document.querySelector(`#${form}_task_input`).value = ''
     document.querySelector(`#${form}_task_button`).disabled = true
     document.querySelector(`#${form}_task_button`).style.cursor = 'not-allowed'
@@ -106,7 +111,7 @@ function load_tasks() {
                 const item_li = document.createElement('li')
 
                 item_li.innerHTML = item
-                item_li.setAttribute('data-tag', todos.indexOf(item))
+                item_li.setAttribute('id', `li_${todos.indexOf(item)}`)
 
                 document.querySelector('#task_list').appendChild(item_li)
                 break;
@@ -201,7 +206,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                     const li = document.createElement('li')
                     li.innerHTML = task
-                    li.setAttribute('data-tag', tag)
+                    li.setAttribute('id', `li_${tag}`)
                     task_list.append(li)
 
                     block_form('add')
@@ -219,32 +224,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     })
 
-    document.querySelector('#edit_task').onsubmit = () => {
-
-        const task = add_task_input.value
-
-        if (task == '' || !task.replace(/\s/g, '').length) {
-
-            block_form()
-
-            window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
-
-            return false
-
-        }
-
-        document.querySelectorAll('input[name="choice"]').forEach((elem) => {
-
-            if (elem.checked) {
-                console.log(elem)
-            }
-
-        })
-
-        return false
-
-    }
-
     document.querySelectorAll('.toggle_form').forEach((button) => {
 
         button.onclick = () => {
@@ -261,15 +240,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
                         li.onclick = () => {
 
-                            const tag = li.dataset.tag
+                            const li_id = li.id
                             let text = li.innerText
 
-                            document.querySelector('#edit_task_input').value = text
+                            edit_task_input.value = text
 
-                            console.log(tag, text)
+                            console.log(li_id, text)
 
                             edit_task_button.disabled = false
                             edit_task_button.style.cursor = 'pointer'
+
+                            edit_task_input.disabled = false
+                            edit_task_input.style.cursor = 'unset'
 
                             if (edit_task_input.value.length !== 0) {
 
@@ -277,6 +259,51 @@ window.addEventListener('DOMContentLoaded', () => {
                                 edit_task_button.style.cursor = 'pointer'
 
                             } else { block_form('edit') }
+
+                            document.querySelector('#edit_task').onsubmit = () => {
+
+                                const task = edit_task_input.value
+
+                                if (task == '' || !task.replace(/\s/g, '').length) {
+
+                                    block_form('edit')
+
+                                    window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
+
+                                    return false
+
+                                }
+
+                                document.querySelectorAll('input[name="choice"]').forEach((elem) => {
+
+                                    if (elem.checked) {
+
+                                        switch (elem.id) {
+                                            case 'del':
+                                                document.querySelector(`#${li_id}`).remove()
+
+                                                todos.pop(text)
+                                                todos_storage = todos.toString()
+                                                localStorage.setItem('tasks', todos_storage)
+
+                                                return false
+
+                                            case 'edit':
+                                                document.querySelector(`#${li_id}`).innerText = task
+                                                todos[todos.indexOf(text)] = task
+                                                todos_storage = todos.toString()
+                                                localStorage.setItem('tasks', todos_storage)
+
+                                                return false
+                                        }
+
+                                    }
+
+                                })
+
+                                return false
+
+                            }
 
                         }
 
