@@ -285,7 +285,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
                                                 block_form('edit')
 
-                                                todos.pop(text)
+                                                // todos.pop(text)
+                                                todos.splice(todos.indexOf(text),1)
                                                 todos_storage = todos.toString()
                                                 localStorage.setItem('tasks', todos_storage)
 
