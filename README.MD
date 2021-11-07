@@ -42,7 +42,7 @@ Nenhuma ferramenta de pre-requisito necessaria
 <ul>
 <li>Pressione o primeiro botao, com a legenda "edit & del";</li>
 <li>Selecione a tarefa que deseja atuar sobre;</li>
-<li>Escolha uma entre as opcoes de "edit" e "del" (editar ou deletar;</li>
+<li>Escolha uma entre as opcoes de "edit" e "del" (editar ou deletar);</li>
 	<ul>
 	<li>Caso escolha "edit", reescreva a tarefa editando-a.</li>
 	</ul>
