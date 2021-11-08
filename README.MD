@@ -22,6 +22,14 @@
 
 <br>
 
+<h2>Features :star: </h2>
+
+- [x] Adicionar de novas tarefas
+- [x] Editar/reescrever de tarefas existentes
+- [x] Deletar lista completa
+
+<br>
+
 <h2>Pre-requisitos :books: </h2>
 
 Nenhuma ferramenta de pre-requisito necessaria.
