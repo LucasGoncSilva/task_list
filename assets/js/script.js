@@ -1,5 +1,3 @@
-// minify using toptal.com
-
 var editting = false
 
 if (!localStorage.getItem('tasks')) {
@@ -148,11 +146,11 @@ function reset_tasks() {
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    const add_task_input = document.querySelector('#add_task_input')
-    const add_task_button = document.querySelector('#add_task_button')
-    const edit_task_input = document.querySelector('#edit_task_input')
-    const edit_task_button = document.querySelector('#edit_task_button')
-    const task_list = document.querySelector('#task_list')
+    const add_task_input = document.getElementById('add_task_input')
+    const add_task_button = document.getElementById('add_task_button')
+    const edit_task_input = document.getElementById('edit_task_input')
+    const edit_task_button = document.getElementById('edit_task_button')
+    const task_list = document.getElementById('task_list')
 
     load_tasks()
 
@@ -187,43 +185,32 @@ window.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    document.querySelectorAll('form').forEach((form) => {
+    document.getElementById('add_task').onsubmit = () => {
 
-        form.onsubmit = () => {
+        const task = add_task_input.value
 
-            switch (form.id) {
-                case 'add_task':
+        if (task == '' || !task.replace(/\s/g, '').length) {
 
-                    const task = add_task_input.value
+            block_form('add')
 
-                    if (task == '' || !task.replace(/\s/g, '').length) {
+            window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
 
-                        block_form('add')
-
-                        window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
-
-                        return false
-
-                    }
-
-                    const li = document.createElement('li')
-                    li.innerHTML = task
-                    li.setAttribute('id', `li_${tag}`)
-                    task_list.append(li)
-
-                    block_form('add')
-
-                    save_tasks(task, tag++)
-
-                    return false
-
-                default:
-                    break;
-            }
+            return false
 
         }
 
-    })
+        const li = document.createElement('li')
+        li.innerHTML = task
+        li.setAttribute('id', `li_${tag}`)
+        task_list.append(li)
+
+        block_form('add')
+
+        save_tasks(task, tag++)
+
+        return false
+
+    }
 
     document.querySelectorAll('.toggle_form').forEach((button) => {
 
@@ -285,8 +272,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                                                 block_form('edit')
 
-                                                // todos.pop(text)
-                                                todos.splice(todos.indexOf(text),1)
+                                                todos.splice(todos.indexOf(text), 1)
                                                 todos_storage = todos.toString()
                                                 localStorage.setItem('tasks', todos_storage)
 

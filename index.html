@@ -2,13 +2,38 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="SVGs/icon.svg">
-    <link rel="stylesheet" href="style.min.css">
-    <script src="script.min.js"></script>
+
+    <!-- Primary Meta Tags -->
     <title>Lista Pessoal de Tarefas</title>
+    <meta name="title" content="Lista Pessoal de Tarefas">
+    <meta name="description"
+        content="Uma lista pessoal de tarefas simples e funcional que permite adição, edição e exclusão de itens conforme a necessidade.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://personaltasklist.vercel.app/">
+    <meta property="og:title" content="Lista Pessoal de Tarefas">
+    <meta property="og:description"
+        content="Uma lista pessoal de tarefas simples e funcional que permite adição, edição e exclusão de itens conforme a necessidade.">
+    <meta property="og:image" content="https://personaltasklist.vercel.app/assets/img/OG.svg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://personaltasklist.vercel.app/">
+    <meta property="twitter:title" content="Lista Pessoal de Tarefas">
+    <meta property="twitter:description"
+        content="Uma lista pessoal de tarefas simples e funcional que permite adição, edição e exclusão de itens conforme a necessidade.">
+    <meta property="twitter:image" content="https://personaltasklist.vercel.app/assets/img/OG.svg">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js"></script>
+
+    <link rel="shortcut icon" href="assets/img/icon.svg" type="image/x-icon">
+
 </head>
 
 <body>
@@ -20,7 +45,7 @@
 
         <div>
             <button id="toggle_edit_form" class="toggle_form" data-form="edit">
-                <img src="SVGs/edit.svg" alt="edit">
+                <img src="assets/img/edit.svg" alt="edit">
             </button><br>
 
             <span>edit</br>&del</span>
@@ -28,7 +53,7 @@
 
         <div>
             <button id="toggle_add_form" class="toggle_form" data-form="add">
-                <img src="SVGs/add_new.svg" alt="add">
+                <img src="assets/img/add_new.svg" alt="add">
             </button><br>
 
             <span>add</br>item</span>
@@ -36,7 +61,7 @@
 
         <div>
             <button id="clear">
-                <img src="SVGs/trash_can.svg" alt="trash_can">
+                <img src="assets/img/trash_can.svg" alt="trash_can">
             </button><br>
 
             <span>reset</br>list</span>
@@ -85,7 +110,7 @@
     </div>
 
     <div id="image">
-        <img src="SVGs/icon.svg" alt="icon" id="illustration">
+        <img src="assets/img/icon.svg" alt="icon" id="illustration">
     </div>
 
 </body>
