@@ -1,9 +1,9 @@
-var editting = false
+let editting = false
 
 if (!localStorage.getItem('tasks')) {
 
-    var todos = []
-    var todos_storage = todos.toString()
+    let todos = []
+    let todos_storage = todos.toString()
     localStorage.setItem('tasks', todos_storage)
 
 }
@@ -18,17 +18,17 @@ if (!localStorage.getItem('tag_num') || !localStorage.getItem('tag_num_storage')
 }
 
 
-function update_tag(num) {
+function updateTag(num) {
 
     localStorage.setItem('tag_num', num)
     tag = Number(localStorage.getItem('tag_num'))
 
 }
 
-function check_editting(form, todos) {
+function checkEditting(form, todos) {
 
     if (editting === false) {
-        toggle_form(form)
+        toggleForm(form)
 
         document.querySelectorAll('li').forEach((li) => {
             li.onmouseover = () => { li.style.cursor = 'unset' }
@@ -39,13 +39,19 @@ function check_editting(form, todos) {
 
     if (todos.length <= 1) {
 
-        window.alert('Nenhuma tarefa a ser editada')
+        Swal.fire({
+            icon: 'info',
+            iconColor: '#4717f6',
+            title: 'Lista Vazia',
+            html: '<p>Não há tarefa nenhuma na lista para ser editada</p>'
+        })
+
         editting = false
         return false
 
     }
 
-    toggle_form(form)
+    toggleForm(form)
 
     document.querySelectorAll('li').forEach((li) => {
         li.onmouseover = () => { li.style.cursor = 'pointer' }
@@ -53,9 +59,13 @@ function check_editting(form, todos) {
 
 }
 
-function toggle_form(form) {
+function toggleForm(form) {
 
-    const popup = document.querySelector(`#${form}_task_popup`)
+    const popup = document.getElementById(`${form}_task_popup`)
+
+    document.querySelectorAll(`.toggle_popup:not(#${form}_task_popup)`).forEach(form => {
+        form.style.display = 'none'
+    })
 
     switch (popup.style.display === 'block') {
         case false:
@@ -69,20 +79,20 @@ function toggle_form(form) {
 
 }
 
-function block_form(form) {
+function blockForm(form) {
 
     if (form === 'edit') {
-        document.querySelector(`#${form}_task_input`).disabled = true
-        document.querySelector(`#${form}_task_input`).style.cursor = 'not-allowed'
+        document.getElementById(`${form}_task_input`).disabled = true
+        document.getElementById(`${form}_task_input`).style.cursor = 'not-allowed'
     }
 
-    document.querySelector(`#${form}_task_input`).value = ''
-    document.querySelector(`#${form}_task_button`).disabled = true
-    document.querySelector(`#${form}_task_button`).style.cursor = 'not-allowed'
+    document.getElementById(`${form}_task_input`).value = ''
+    document.getElementById(`${form}_task_button`).disabled = true
+    document.getElementById(`${form}_task_button`).style.cursor = 'not-allowed'
 
 }
 
-function save_tasks(task, data) {
+function saveTasks(task, data) {
 
     data++
 
@@ -90,11 +100,11 @@ function save_tasks(task, data) {
     todos_storage = todos.toString()
     localStorage.setItem('tasks', todos_storage)
 
-    update_tag(data)
+    updateTag(data)
 
 }
 
-function load_tasks() {
+function loadTasks() {
 
     todos = localStorage.getItem('tasks').split(',')
     todos_forof = todos.values()
@@ -121,7 +131,7 @@ function load_tasks() {
 
 }
 
-function reset_tasks() {
+function resetTasks() {
 
     let confirm = window.confirm('Tem certeza? Toda a lista será apagada.')
 
@@ -152,10 +162,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const edit_task_button = document.getElementById('edit_task_button')
     const task_list = document.getElementById('task_list')
 
-    load_tasks()
+    loadTasks()
 
-    block_form('edit')
-    block_form('add')
+    blockForm('edit')
+    blockForm('add')
 
     edit_task_input.onkeyup = () => {
 
@@ -167,7 +177,7 @@ window.addEventListener('DOMContentLoaded', () => {
             edit_task_button.disabled = false
             edit_task_button.style.cursor = 'pointer'
 
-        } else { block_form('edit') }
+        } else { blockForm('edit') }
 
     }
 
@@ -181,7 +191,7 @@ window.addEventListener('DOMContentLoaded', () => {
             add_task_button.disabled = false
             add_task_button.style.cursor = 'pointer'
 
-        } else { block_form('add') }
+        } else { blockForm('add') }
 
     }
 
@@ -191,7 +201,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (task == '' || !task.replace(/\s/g, '').length) {
 
-            block_form('add')
+            blockForm('add')
 
             window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
 
@@ -204,9 +214,9 @@ window.addEventListener('DOMContentLoaded', () => {
         li.setAttribute('id', `li_${tag}`)
         task_list.append(li)
 
-        block_form('add')
+        blockForm('add')
 
-        save_tasks(task, tag++)
+        saveTasks(task, tag++)
 
         return false
 
@@ -222,7 +232,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 case 'edit':
 
                     editting = !editting
-                    check_editting(form, todos)
+                    checkEditting(form, todos)
 
                     document.querySelectorAll('li').forEach((li) => {
 
@@ -244,7 +254,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                 edit_task_button.disabled = false
                                 edit_task_button.style.cursor = 'pointer'
 
-                            } else { block_form('edit') }
+                            } else { blockForm('edit') }
 
                             document.querySelector('#edit_task').onsubmit = () => {
 
@@ -252,7 +262,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                                 if (task == '' || !task.replace(/\s/g, '').length) {
 
-                                    block_form('edit')
+                                    blockForm('edit')
 
                                     window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
 
@@ -270,7 +280,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                                                 edit_task_input.value = ''
 
-                                                block_form('edit')
+                                                blockForm('edit')
 
                                                 todos.splice(todos.indexOf(text), 1)
                                                 todos_storage = todos.toString()
@@ -303,7 +313,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     break;
 
                 default:
-                    toggle_form(form)
+                    toggleForm(form)
                     break;
             }
 
@@ -311,6 +321,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     })
 
-    document.querySelector('#clear').onclick = reset_tasks
+    document.querySelector('#clear').onclick = resetTasks
 
 })

@@ -3,12 +3,12 @@
 
 <head>
 
+    <!-- meta tags SEO -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Primary Meta Tags -->
-    <title>Lista Pessoal de Tarefas</title>
+    <meta name="author" content="Lucas Gonçalves da Silva">
     <meta name="title" content="Lista Pessoal de Tarefas">
     <meta name="description"
         content="Uma lista pessoal de tarefas simples e funcional que permite adição, edição e exclusão de itens conforme a necessidade.">
@@ -29,10 +29,16 @@
         content="Uma lista pessoal de tarefas simples e funcional que permite adição, edição e exclusão de itens conforme a necessidade.">
     <meta property="twitter:image" content="https://personaltasklist.vercel.app/assets/img/OG.svg">
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/script.js"></script>
+    <!-- title -->
+    <title>Lista Pessoal de Tarefas</title>
 
+    <!-- page icon -->
     <link rel="shortcut icon" href="assets/img/icon.svg" type="image/x-icon">
+
+    <!-- imports -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js/script.min.js"></script>
 
 </head>
 
@@ -69,7 +75,7 @@
 
     </div>
 
-    <div id="add_task_popup">
+    <div id="add_task_popup" class="toggle_popup">
 
         <form id="add_task">
 
@@ -83,7 +89,7 @@
 
     </div>
 
-    <div id="edit_task_popup">
+    <div id="edit_task_popup" class="toggle_popup">
 
         <form id="edit_task">
 
