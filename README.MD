@@ -26,17 +26,19 @@
 
 - [x] Adicionar novas tarefas
 - [x] Editar/reescrever de tarefas existentes
-- [x] Deletar lista completa
+- [x] Deletar a lista completamente
 
 <br>
 
 <h2>Pré-requisitos :books: </h2>
 
-Nenhuma ferramenta de pré-requisito necessária.
+Online: Nenhuma ferramenta de pré-requisito necessária para utilização online.
 
 <br>
 
 <h2>Utilização :crystal_ball: </h2>
+
+Apenas acesse [este](https://personaltasklist.vercel.app/) endereço online e seja feliz e...
 
 <h3>Adicionar tarefa</h3>
 
