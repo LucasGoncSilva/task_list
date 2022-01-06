@@ -1,9 +1,9 @@
-let editting = false
+var editting = false
 
 if (!localStorage.getItem('tasks')) {
 
-    let todos = []
-    let todos_storage = todos.toString()
+    var todos = []
+    var todos_storage = todos.toString()
     localStorage.setItem('tasks', todos_storage)
 
 }
@@ -133,22 +133,41 @@ function loadTasks() {
 
 function resetTasks() {
 
-    let confirm = window.confirm('Tem certeza? Toda a lista será apagada.')
+    if (todos.length <= 1) {
 
-    if (confirm) {
+        Swal.fire({
+            icon: 'info',
+            iconColor: '#4717f6',
+            title: 'Lista Vazia',
+            html: '<p>Não há tarefa nenhuma para que a lista seja excluída</p>'
+        })
 
-        task_list.innerHTML = []
-        todos = []
-        todos_storage = todos.toString()
-        localStorage.setItem('tasks', todos_storage)
-
-        tag_list = []
-
-        window.location.reload()
-
+        return false
     }
 
-    return false
+    Swal.fire({
+
+        icon: 'question',
+        iconColor: '#4717f6',
+        title: 'Apagar lista completa?',
+        confirmButtonText: 'Sim',
+        showDenyButton: true,
+        denyButtonText: 'Não',
+
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            task_list.innerHTML = []
+            todos = []
+            todos_storage = todos.toString()
+            localStorage.setItem('tasks', todos_storage)
+
+            tag_list = []
+            window.location.reload()
+
+        } else if (result.isDenied) { return false }
+    })
 
 }
 
@@ -203,7 +222,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
             blockForm('add')
 
-            window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
+            Swal.fire({
+                title: 'Hahaa',
+                html: '<p>Boa tentativa, mas tarefas vazias não passarão!</p>',
+                timer: 1000
+            })
 
             return false
 
@@ -264,7 +287,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
                                     blockForm('edit')
 
-                                    window.alert('Tarefas vazias não passarão! (Boa tentativa, mas este é um caso pensado).')
+                                    Swal.fire({
+                                        title: 'Hahaa',
+                                        html: '<p>Boa tentativa, mas tarefas vazias não passarão!</p>',
+                                        timer: 1000
+                                    })
 
                                     return false
 
